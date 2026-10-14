@@ -10,7 +10,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest",
-    "prepare": "cd .. && if [ \"$HUSKY\" != \"0\" ] && [ -d .git ]; then node frontend/node_modules/husky/bin.mjs; fi",
+    "prepare": "cd .. && if [ \"$HUSKY\" != \"0\" ] && [ \"$CI\" != \"true\" ] && [ -d .git ]; then frontend/node_modules/.bin/husky; fi",
     "test:watch": "vitest --watch"
   },
   "dependencies": {
