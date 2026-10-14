@@ -1,0 +1,70 @@
+name: the-feed
+
+services:
+  feed-backend:
+    build:
+      context: ./backend
+      dockerfile: docker/api.Dockerfile
+    container_name: feed-backend
+    restart: unless-stopped
+    ports:
+      - "4001:4001"
+    env_file:
+      - backend/.env
+    depends_on:
+      mongo-init:
+        condition: service_completed_successfully
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  mongo:
+    image: mongo:8
+    container_name: feed-mongo-db
+    restart: unless-stopped
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    ports:
+      - "127.0.0.1:27018:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --quiet --eval 'db.adminCommand({ ping: 1 }).ok'"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  mongo-init:
+    image: mongo:8
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - ./mongo/init-replica.js:/init-replica.js:ro
+    entrypoint:
+      - mongosh
+      - --host
+      - mongo:27017
+      - --file
+      - /init-replica.js
+    restart: "no"
+
+  feed-frontend:
+    build:
+      context: ./frontend
+      dockerfile: docker/site.Dockerfile
+    container_name: feed-frontend
+    restart: unless-stopped
+    ports:
+      - "3004:3000"
+    env_file:
+      - frontend/.env
+
+volumes:
+  mongo-data:

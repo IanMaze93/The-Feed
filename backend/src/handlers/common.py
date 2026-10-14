@@ -1,0 +1,30 @@
+from bson import ObjectId
+
+from src.database.create import createDocument
+from src.models.database.common import Collections
+from src.tools.logging import getLogger
+
+logger = getLogger()
+
+
+def createEntity(data: dict, collection: Collections, session=None):
+    try:
+        entity_id = createDocument(collection, data, session=session)
+        return entity_id
+
+    except Exception as e:
+        logger.exception("Error creating entity", exc_info=True)
+        raise ValueError(f"Error creating entity: {e}")
+
+
+def deleteEntityById(entity_id: str, collection: Collections):
+    try:
+        from src.database.delete import delete_one
+
+        result = delete_one(collection, {"_id": ObjectId(entity_id)})
+        if result.deleted_count == 0:
+            return {"status": "not found"}
+        return {"status": "success"}
+    except Exception as e:
+        logger.exception("Error deleting entity", exc_info=True)
+        raise ValueError(f"Error deleting entity: {e}")
