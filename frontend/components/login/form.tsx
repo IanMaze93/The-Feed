@@ -25,7 +25,7 @@ export default function LoginForm() {
 
       if (!response.ok) {
         setOutputMessage(
-          "Login failed. Please check your username and password.",
+          "Login failed. Please check your username and password."
         );
         return;
       }

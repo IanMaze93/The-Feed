@@ -25,7 +25,7 @@ describe("TopicStoriesSchema", () => {
 describe("AllTopicStoriesResponseSchema", () => {
   it("accepts an empty stories collection", () => {
     expect(
-      AllTopicStoriesResponseSchema.safeParse({ stories: [] }).success,
+      AllTopicStoriesResponseSchema.safeParse({ stories: [] }).success
     ).toBe(true);
   });
 

@@ -18,7 +18,7 @@ export default async function Feed({ params }: Props) {
   const { userId } = await params;
 
   const data: AllTopicStoriesResponse = await backendGet(
-    `users/${userId}/stories`,
+    `users/${userId}/stories`
   );
 
   return (
@@ -63,7 +63,7 @@ export default async function Feed({ params }: Props) {
                   .sort(
                     (a, b) =>
                       new Date(b.published_at).getTime() -
-                      new Date(a.published_at).getTime(),
+                      new Date(a.published_at).getTime()
                   )
                   .map((story) => (
                     <div
@@ -78,7 +78,7 @@ export default async function Feed({ params }: Props) {
                       >
                         <h3
                           className={`text-center font-bold ${getBadgeColor(
-                            story.source,
+                            story.source
                           )} text-white`}
                         >
                           {capitalize(story.source)}

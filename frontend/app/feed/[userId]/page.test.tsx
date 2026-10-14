@@ -44,7 +44,7 @@ describe("Feed page", () => {
 
     expect(backendGet).toHaveBeenCalledWith("users/user-123/stories");
     expect(markup.indexOf("Newer story")).toBeLessThan(
-      markup.indexOf("Older story"),
+      markup.indexOf("Older story")
     );
     expect(markup).toContain('href="https://example.com/newer"');
     expect(markup).toContain('href="/topics/user-123"');

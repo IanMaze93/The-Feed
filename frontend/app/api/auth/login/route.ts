@@ -6,7 +6,7 @@ import { TokenResponseSchema } from "@/app/types/auth";
 export async function POST(request: Request) {
   const body = await request.json();
   const data = TokenResponseSchema.parse(
-    await backendPost("auth/login", body, false),
+    await backendPost("auth/login", body, false)
   );
 
   const cookieStore = await cookies();

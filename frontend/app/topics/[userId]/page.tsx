@@ -42,15 +42,15 @@ export default async function Topics({ params }: Props) {
     data.topics.map(async (topic) => {
       const pointers: Pointer[] = await Promise.all(
         topic.pointers.map((pointerId) =>
-          backendGet<Pointer>(`users/${userId}/pointers/${pointerId}`),
-        ),
+          backendGet<Pointer>(`users/${userId}/pointers/${pointerId}`)
+        )
       );
 
       return {
         ...topic,
         pointers,
       };
-    }),
+    })
   );
 
   return (

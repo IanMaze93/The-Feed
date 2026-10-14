@@ -25,7 +25,7 @@ export async function PUT(request: NextRequest, { params }: Props) {
       },
       {
         status: 500,
-      },
+      }
     );
   }
 }

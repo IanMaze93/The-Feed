@@ -40,11 +40,11 @@ describe("Topics page", () => {
     expect(backendGet).toHaveBeenNthCalledWith(1, "users/user-123/topics");
     expect(backendGet).toHaveBeenNthCalledWith(
       2,
-      "users/user-123/pointers/pointer-1",
+      "users/user-123/pointers/pointer-1"
     );
     expect(backendGet).toHaveBeenNthCalledWith(
       3,
-      "users/user-123/pointers/pointer-2",
+      "users/user-123/pointers/pointer-2"
     );
     expect(editor.props).toMatchObject({
       userId: "user-123",

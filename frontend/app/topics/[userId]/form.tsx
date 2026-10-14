@@ -35,8 +35,8 @@ export default function EditTopicsForm({ userId, initialTopics }: Props) {
               ...topic,
               topic: value,
             }
-          : topic,
-      ),
+          : topic
+      )
     );
   }
 
@@ -52,7 +52,7 @@ export default function EditTopicsForm({ userId, initialTopics }: Props) {
 
   function removeTopic(index: number) {
     setTopics((current) =>
-      current.filter((_, topicIndex) => topicIndex !== index),
+      current.filter((_, topicIndex) => topicIndex !== index)
     );
   }
 
@@ -70,15 +70,15 @@ export default function EditTopicsForm({ userId, initialTopics }: Props) {
                 },
               ],
             }
-          : topic,
-      ),
+          : topic
+      )
     );
   }
 
   function updatePointerUrl(
     topicIndex: number,
     pointerIndex: number,
-    value: string,
+    value: string
   ) {
     setTopics((current) =>
       current.map((topic, currentTopicIndex) => {
@@ -94,17 +94,17 @@ export default function EditTopicsForm({ userId, initialTopics }: Props) {
                   ...pointer,
                   url: value,
                 }
-              : pointer,
+              : pointer
           ),
         };
-      }),
+      })
     );
   }
 
   function updatePointerFeedType(
     topicIndex: number,
     pointerIndex: number,
-    value: string,
+    value: string
   ) {
     setTopics((current) =>
       current.map((topic, currentTopicIndex) => {
@@ -120,10 +120,10 @@ export default function EditTopicsForm({ userId, initialTopics }: Props) {
                   ...pointer,
                   feed_type: value,
                 }
-              : pointer,
+              : pointer
           ),
         };
-      }),
+      })
     );
   }
 
@@ -137,10 +137,10 @@ export default function EditTopicsForm({ userId, initialTopics }: Props) {
         return {
           ...topic,
           pointers: topic.pointers.filter(
-            (_, currentPointerIndex) => currentPointerIndex !== pointerIndex,
+            (_, currentPointerIndex) => currentPointerIndex !== pointerIndex
           ),
         };
-      }),
+      })
     );
   }
 
@@ -264,7 +264,7 @@ export default function EditTopicsForm({ userId, initialTopics }: Props) {
                       updatePointerFeedType(
                         topicIndex,
                         pointerIndex,
-                        event.target.value,
+                        event.target.value
                       )
                     }
                     className="rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-white"
@@ -282,7 +282,7 @@ export default function EditTopicsForm({ userId, initialTopics }: Props) {
                       updatePointerUrl(
                         topicIndex,
                         pointerIndex,
-                        event.target.value,
+                        event.target.value
                       )
                     }
                     placeholder="Pointer URL"

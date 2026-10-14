@@ -39,7 +39,7 @@ export default function SignupForm() {
       if (!response.ok) {
         setOutputMessageColor("red");
         setOutputMessage(
-          "Signup failed. Please check your username and password.",
+          "Signup failed. Please check your username and password."
         );
         return;
       }
@@ -53,7 +53,7 @@ export default function SignupForm() {
       console.error("Signup failed:", error);
       setOutputMessageColor("red");
       setOutputMessage(
-        "Signup failed. Please check your username and password.",
+        "Signup failed. Please check your username and password."
       );
     }
   }
