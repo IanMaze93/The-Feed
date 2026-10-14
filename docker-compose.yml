@@ -21,7 +21,7 @@ services:
         max-file: "3"
 
   mongo:
-    image: mongo:8
+    image: mongo:8.2
     container_name: feed-mongo-db
     restart: unless-stopped
     command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
