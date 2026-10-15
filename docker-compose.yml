@@ -11,9 +11,6 @@ services:
       - "4001:4001"
     env_file:
       - backend/.env
-    depends_on:
-      mongo-init:
-        condition: service_completed_successfully
     logging:
       driver: "json-file"
       options:
@@ -39,21 +36,6 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-
-  mongo-init:
-    image: mongo:8
-    depends_on:
-      mongo:
-        condition: service_healthy
-    volumes:
-      - ./mongo/init-replica.js:/init-replica.js:ro
-    entrypoint:
-      - mongosh
-      - --host
-      - mongo:27017
-      - --file
-      - /init-replica.js
-    restart: "no"
 
   feed-frontend:
     build:

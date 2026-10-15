@@ -28,6 +28,7 @@ from src.models.database.pointer import Outbound_Pointer
 from src.models.database.story import Outbound_Stories, Outbound_Story
 from src.models.database.topic import Outbound_Topic
 from src.setup.mongo.index import create_indexes
+from src.setup.mongo.init_replica import initialize_replica_set
 from src.tools.auth.token import (
     create_access_token,
     get_current_user_id,
@@ -41,6 +42,7 @@ db = connectToDatabase()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    initialize_replica_set()
     create_indexes(db)
     scheduler.start()
 
