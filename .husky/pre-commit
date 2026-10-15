@@ -1,9 +1,8 @@
 #!/bin/sh
 set -e
 
-cd frontend
+cd frontend || exit 1
 pnpm exec lint-staged
-echo $?
 
 cd ../backend || exit 1
 poetry run ruff check . --fix
